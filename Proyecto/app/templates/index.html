@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Inventory List</h2>
+<a href="{{ url_for('add') }}" class="btn btn-primary mb-3">Add Item</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>MAC Address</th>
+            <th>Serial Number</th>
+            <th>Manufacturer</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.mac_address }}</td>
+            <td>{{ item.serial_number }}</td>
+            <td>{{ item.manufacturer }}</td>
+            <td>{{ item.description }}</td>
+            <td>
+                <a href="{{ url_for('edit', id=item.id) }}" class="btn btn-warning">Edit</a>
+                <form action="{{ url_for('delete', id=item.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

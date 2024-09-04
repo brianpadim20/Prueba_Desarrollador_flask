@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      FLASK_ENV: development
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: C1o2l3o4m5b6i7a8  
+      MYSQL_DATABASE: inventory          
+      MYSQL_USER: bpatino                 
+      MYSQL_PASSWORD: B3rl1n123         
+    ports:
+      - "3306:3306"
