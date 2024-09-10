@@ -2,3 +2,5 @@ Flask
 SQLAlchemy
 pymysql
 flask-mysqldb
+flask_sqlalchemy
+flask_wtf
