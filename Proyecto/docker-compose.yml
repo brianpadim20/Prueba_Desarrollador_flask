@@ -6,14 +6,30 @@ services:
       - "5000:5000"
     environment:
       FLASK_ENV: development
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: bpatino
+      DB_PASSWORD: C1o2l3o4m5b6i7a8
+      DB_NAME: inventory
     depends_on:
       - db
+
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: C1o2l3o4m5b6i7a8  
-      MYSQL_DATABASE: inventory          
-      MYSQL_USER: bpatino                 
-      MYSQL_PASSWORD: B3rl1n123         
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: inventory
+      MYSQL_USER: bpatino
+      MYSQL_PASSWORD: C1o2l3o4m5b6i7a8
     ports:
-      - "3306:3306"
+      - "5500:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
