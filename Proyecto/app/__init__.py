@@ -8,3 +8,6 @@ app.secret_key = 'your_secret_key'
 db = SQLAlchemy(app)
 
 from app import routes
+
+with app.app_context():
+    db.create_all()
